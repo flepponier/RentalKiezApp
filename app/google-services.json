@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "650506076601",
+    "firebase_url": "https://rental-app-f84f1-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "rental-app-f84f1",
+    "storage_bucket": "rental-app-f84f1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:650506076601:android:e806d2d484aebb32343668",
+        "android_client_info": {
+          "package_name": "de.app.rentalkiezapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "650506076601-400s1bf5l87pkhp17gdt4ngqftqq6r44.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtBPE93iTOO2xVQghFSOmEpW45ZTqh4HQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "650506076601-400s1bf5l87pkhp17gdt4ngqftqq6r44.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

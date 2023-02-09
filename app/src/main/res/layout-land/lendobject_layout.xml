@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.LendObjectActivity">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imageViewObject"
+        android:layout_width="206dp"
+        android:layout_height="147dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/registerface"
+        app:shapeAppearanceOverlay="@style/roundimageview"
+        />
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="431dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="48dp"
+        android:background="#D3D3D3"
+        android:text="Hammer"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewObject" />
+
+    <TextView
+        android:id="@+id/textViewDescription"
+        android:layout_width="330dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="36dp"
+        android:text="Some Text over some stuffSome Text over some stuffSome Text over some stuff"
+        android:maxLines="5"
+        android:scrollbars = "vertical"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
+
+    <TextView
+        android:id="@+id/textViewState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        android:text="Sehr Gut"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDescription" />
+
+    <TextView
+        android:id="@+id/textViewEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:text="Random.Email@web.de"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewState" />
+
+    <ImageView
+        android:id="@+id/imageViewAvailable"
+        android:layout_width="101dp"
+        android:layout_height="79dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEmail"
+        app:srcCompat="@drawable/available" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

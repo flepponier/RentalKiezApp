@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">RentalKiezApp</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="email">E-Mail</string>
+    <string name="rentalapp">Rental App</string>
+    <string name="rent">Rent</string>
+    <string name="lend">Lend</string>
+    <string name="home">home</string>
+    <string name="Register">Register</string>
+    <string name="firstandlastname">First and Lastname</string>
+    <string name="street">Street</string>
+    <string name="zipcode">Zipcode</string>
+    <string name="town">Town</string>
+
+    <string name="primary_color">Primary color</string>
+    <string name="button">Button</string>
+    <string name="secondary_color">Secondary color</string>
+    <string name="email_icon">email icon</string>
+</resources>
