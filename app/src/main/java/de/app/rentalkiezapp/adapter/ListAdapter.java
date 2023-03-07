@@ -1,4 +1,4 @@
-package de.app.rentalkiezapp;
+package de.app.rentalkiezapp.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 
 
+import de.app.rentalkiezapp.R;
 import de.app.rentalkiezapp.entity.RentObject;
 
 public class ListAdapter extends ArrayAdapter<RentObject> {

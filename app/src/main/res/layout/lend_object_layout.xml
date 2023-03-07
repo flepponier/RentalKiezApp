@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".activity.LendObjectActivity">
 
+    <ImageButton
+        android:id="@+id/btnback"
+        android:layout_width="64dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@drawable/backbutton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imageViewObject"
         android:layout_width="206dp"
@@ -46,40 +58,44 @@
         android:padding="20dp"
         android:scrollbars="vertical"
         android:text="Some Text over some stuffSome Text over some stuffSome Text over some stuff"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
-        tools:layout_editor_absoluteX="-3dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="219dp"
-        android:layout_height="159dp"
+        android:layout_width="216dp"
+        android:layout_height="206dp"
         android:background="#D3D3D3"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewDescription"
-        app:layout_constraintVertical_bias="0.358">
+        app:layout_constraintVertical_bias="0.205">
 
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="36dp"
+            android:layout_height="33dp"
+            android:layout_marginTop="92dp"
             app:layout_constraintEnd_toStartOf="@+id/textViewState"
+            app:layout_constraintHorizontal_bias="0.342"
             app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/condition"
-            tools:layout_editor_absoluteY="26dp" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/condition" />
 
         <TextView
             android:id="@+id/textViewEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="30dp"
 
 
             android:text="Random.Email@web.de"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.714"
+            app:layout_constraintHorizontal_bias="0.731"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewState" />
 
@@ -87,36 +103,39 @@
             android:id="@+id/textViewState"
             android:layout_width="74dp"
             android:layout_height="30dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="28dp"
             android:text="Sehr gut "
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/imageViewAvailable" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="24dp"
 
             android:contentDescription="@string/email_icon"
             app:layout_constraintEnd_toStartOf="@+id/textViewEmail"
-            app:layout_constraintHorizontal_bias="0.689"
+            app:layout_constraintHorizontal_bias="0.684"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView"
             app:srcCompat="@android:drawable/ic_dialog_email" />
 
+        <ImageView
+            android:id="@+id/imageViewAvailable"
+            android:layout_width="53dp"
+            android:layout_height="48dp"
+
+
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/available" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <ImageView
-        android:id="@+id/imageViewAvailable"
-        android:layout_width="53dp"
-        android:layout_height="48dp"
-
-        app:srcCompat="@drawable/available"
-        tools:layout_editor_absoluteX="342dp"
-        tools:layout_editor_absoluteY="169dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

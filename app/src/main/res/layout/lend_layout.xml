@@ -6,16 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".activity.LendActivity">
 
+
     <ImageButton
         android:id="@+id/btnback"
         android:layout_width="64dp"
         android:layout_height="55dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@drawable/backbutton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/backbuttondata"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/btnlogout"
@@ -25,8 +27,25 @@
         android:layout_marginEnd="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/backbuttondata"
-        tools:ignore="SpeakableTextPresentCheck" />
+        android:src="@drawable/logoutbutton"
+        android:scaleType="fitCenter"
+        android:background="@android:color/transparent" />
+
+    <TextView
+        android:id="@+id/textViewSearch"
+        android:layout_width="432dp"
+        android:layout_height="81dp"
+        android:layout_marginTop="96dp"
+        android:gravity="center"
+        android:text="Items"
+        android:background="#D3D3D3"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:layout_gravity="top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!--<ListView
         android:id="@+id/listView"
@@ -41,8 +60,8 @@
 
     <ListView
         android:id="@+id/listView"
-        android:layout_width="336dp"
-        android:layout_height="508dp"
+        android:layout_width="330dp"
+        android:layout_height="452dp"
         android:layout_marginTop="15dp"
         android:divider="#00000000"
         android:dividerHeight="10dp"
@@ -50,6 +69,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.701" />
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

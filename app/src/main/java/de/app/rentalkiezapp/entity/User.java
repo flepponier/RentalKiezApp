@@ -1,14 +1,13 @@
-package de.app.rentalkiez.entity;
+package de.app.rentalkiezapp.entity;
 
 public class User {
-    private String email, firstname, lastname, dob, street, city;
+    private String email, firstname, lastname, street, city;
     private int zipcode;
 
-    User(String email, String firstname, String lastname, String dob, String street, int zipcode, String city) {
+    public User(String email, String firstname, String lastname,  String street, int zipcode, String city) {
         this.email = email;
         this.firstname = firstname;
         this.lastname = lastname;
-        this.dob = dob;
         this.street = street;
         this.zipcode = zipcode;
         this.city = city;
@@ -38,13 +37,6 @@ public class User {
         this.lastname = lastname;
     }
 
-    public String getDob() {
-        return dob;
-    }
-
-    public void setDob(String dob) {
-        this.dob = dob;
-    }
 
     public String getStreet() {
         return street;

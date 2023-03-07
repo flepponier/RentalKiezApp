@@ -22,6 +22,9 @@ import de.app.rentalkiezapp.R;
 
 public class LoginActivity extends AppCompatActivity {
 
+    String checkEmail;
+    String checkPass;
+
     private EditText editTextEmail, editTextPassword;
     private Button btnlogin, btnregister;
 
@@ -47,8 +50,12 @@ public class LoginActivity extends AppCompatActivity {
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String checkEmail = editTextEmail.getText().toString().trim();
-                String checkPass = editTextPassword.getText().toString().trim();
+                checkEmail = editTextEmail.getText().toString().trim();
+                checkPass = editTextPassword.getText().toString().trim();
+
+                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                intent.putExtra("email", checkEmail);
+                startActivity(intent);
 
                 if(TextUtils.isEmpty(checkEmail)) {
                     editTextEmail.setError("Email is Required.");
@@ -70,7 +77,10 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(LoginActivity.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+
+                            Intent goToHome = new Intent(LoginActivity.this, HomeActivity.class);
+                            goToHome.putExtra("email", checkEmail);
+                            startActivity(goToHome);
                         }
                         else{
                             Toast.makeText(LoginActivity.this, "Error! " + task.getException().getMessage(), Toast.LENGTH_LONG).show();

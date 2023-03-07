@@ -1,29 +1,26 @@
 package de.app.rentalkiezapp.entity;
 
-import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
-import java.io.ByteArrayOutputStream;
-import java.util.Arrays;
-
 public class RentObject implements Parcelable {
     int id;
     String  title, description, state, email;
-    int imageBytes;
+    String imageReference;
     Boolean taken;
 
-    public RentObject(int id, String title, String description, String state, String email, int imageBytes, Boolean taken) {
+    public RentObject(int id, String title, String description, String state, String email, String imageReference, Boolean taken) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.state = state;
         this.email = email;
-        this.imageBytes = imageBytes;
+        this.imageReference = imageReference;
         this.taken = taken;
     }
+    public RentObject(){}
 
     protected RentObject(Parcel in) {
         id = in.readInt();
@@ -31,7 +28,7 @@ public class RentObject implements Parcelable {
         description = in.readString();
         state = in.readString();
         email = in.readString();
-        imageBytes = in.readInt();
+        imageReference = in.readString();
         byte tmpTaken = in.readByte();
         taken = tmpTaken == 0 ? null : tmpTaken == 1;
     }
@@ -88,12 +85,12 @@ public class RentObject implements Parcelable {
         this.email = email;
     }
 
-    public int getImageBytes() {
-        return imageBytes;
+    public String getImageReference() {
+        return imageReference;
     }
 
-    public void setImageBytes(int imageBytes) {
-        this.imageBytes = imageBytes;
+    public void setImageReference(String imageReference) {
+        this.imageReference = imageReference;
     }
 
     public Boolean getTaken() {
@@ -128,7 +125,7 @@ public class RentObject implements Parcelable {
         dest.writeString(description);
         dest.writeString(state);
         dest.writeString(email);
-        dest.writeInt(imageBytes);
+        dest.writeString(imageReference);
         dest.writeByte((byte) (taken == null ? 0 : taken ? 1 : 2));
     }
 }

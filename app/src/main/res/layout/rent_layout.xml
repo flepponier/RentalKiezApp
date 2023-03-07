@@ -8,22 +8,94 @@
 
     <ImageButton
         android:id="@+id/btnback"
-        android:layout_width="64dp"
-        android:layout_height="55dp"
+        android:layout_width="73dp"
+        android:layout_height="50dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        app:srcCompat="@drawable/backbuttondata"
+        android:src="@drawable/backbutton"
+        android:scaleType="fitCenter"
+        android:background="@android:color/transparent"
+
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageButton
         android:id="@+id/btnlogout"
-        android:layout_width="64dp"
-        android:layout_height="55dp"
+        android:layout_width="80dp"
+        android:layout_height="56dp"
         android:layout_marginTop="16dp"
-        app:srcCompat="@drawable/backbuttondata"
-        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/logoutbutton"
+        android:scaleType="fitCenter"
+        android:background="@android:color/transparent"
+
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/textViewSearch"
+        android:layout_width="432dp"
+        android:layout_height="81dp"
+        android:layout_marginTop="96dp"
+        android:gravity="center"
+        android:text="SEARCH"
+        android:background="#D3D3D3"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.523"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewDescriptor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="84dp"
+        android:text="OR: Article or Zipcode:"
+        android:gravity="center"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerFilter" />
+
+    <EditText
+        android:id="@+id/editTextUserInput"
+        android:layout_width="241dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Hammer  /  10711"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDescriptor" />
+
+    <Spinner
+        android:id="@+id/spinnerFilter"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="36dp"
+        android:entries="@array/disctricts_array"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSearch"
+         />
+
+    <Button
+        android:id="@+id/btngo"
+        android:layout_width="97dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="56dp"
+        android:gravity="center"
+
+        android:text="GO"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextUserInput" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

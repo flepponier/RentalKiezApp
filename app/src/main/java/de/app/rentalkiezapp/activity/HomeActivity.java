@@ -7,19 +7,24 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
 import de.app.rentalkiezapp.R;
+import de.app.rentalkiezapp.database.DatabaseHelperRentables;
 
 public class HomeActivity extends AppCompatActivity {
     Button lend, rent;
     ImageButton logout;
+    DatabaseHelperRentables databaseHelperRentables;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_layout);
+
+        //create database here
 
         logout = (ImageButton) findViewById(R.id.btnlogout);
         rent = (Button) findViewById(R.id.btnrent);
@@ -36,18 +41,26 @@ public class HomeActivity extends AppCompatActivity {
         public void onClick(View view) {
             if (view.getId()==R.id.btnlogout){
                 FirebaseAuth.getInstance().signOut(); //logout
-                startActivity(new Intent(HomeActivity.this,LoginActivity.class));
+                Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
                 finish();
             }
             else if(view.getId()==R.id.btnrent){
+                DatabaseHelperRentables databaseHelperRentables = new DatabaseHelperRentables(HomeActivity.this);
+                boolean success= databaseHelperRentables.addAllRentables();
+
+                    Toast.makeText(HomeActivity.this, "Success= "+ success, Toast.LENGTH_SHORT).show();
+
                 //hier einbauen, dass Userdaten weitergereicht werden
                 //gotoRent.putExtra("calculatedMwtS", calculatedMwtS);
                 startActivity(new Intent(HomeActivity.this, RentActivity.class));
             }
             else if(view.getId()==R.id.btnlend){
+                String email = getIntent().getStringExtra("email");
+
                 Intent gotoLend = new Intent(HomeActivity.this, LendActivity.class);
-                //hier einbauen, dass Userdaten weitergereicht werden
-                //gotoLend.putExtra("calculatedMwtS", calculatedMwtS);
+                gotoLend.putExtra("email", email);
                 startActivity(gotoLend);
             }
         }

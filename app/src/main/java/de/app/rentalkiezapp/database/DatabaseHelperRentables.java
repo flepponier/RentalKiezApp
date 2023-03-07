@@ -17,9 +17,12 @@ import java.util.List;
 
 import de.app.rentalkiezapp.entity.RentObject;
 
-public class DatabaseHelper extends SQLiteOpenHelper {
+public class DatabaseHelperRentables extends SQLiteOpenHelper {
+    ArrayList<RentObject> returnList;
+
 
     public static final String RENTABLES_TABLE = "RENTABLES_TABLE";
+    public static final String USERS_TABLE = "USERS_TABLE";
     public static final String ID = "id";
     public static final String IMAGE = "image";
     public static final String TITLE = "title";
@@ -35,7 +38,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     @SuppressLint("RestrictedApi")
-    public DatabaseHelper(@Nullable Context context) {
+    public DatabaseHelperRentables(@Nullable Context context) {
         super(context, "RENTALKIEZ.db", null, 1);
         Log.d(LOG_TAG, "DbHelper created database: " + getDatabaseName());
     }
@@ -89,35 +92,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public ArrayList<RentObject> getUserEntries(String email){
-        ArrayList<RentObject> returnList = new ArrayList<>();
 
         SQLiteDatabase db = getReadableDatabase();
-        String query = "SELECT * FROM "+RENTABLES_TABLE+" WHERE UPPER(email)=UPPER('florian.eppe@web.de')";
+        String query = "SELECT * FROM "+RENTABLES_TABLE+" WHERE UPPER(email)=UPPER('"+email+"')";
 
         //get results from Database
         Cursor cursor = db.rawQuery(query, null);
 
         //assign values of each row of results to a RentObject and add to List
-        if(cursor.moveToFirst()){
-            do {
-                RentObject rentObject = new RentObject();
-                rentObject.setId(cursor.getInt(0));
-                rentObject.setImageReference(cursor.getString(1));
-                rentObject.setTitle(cursor.getString(2));
-                rentObject.setDescription(cursor.getString(3));
-                rentObject.setState(cursor.getString(4));
-                rentObject.setEmail(cursor.getString(5));
-                rentObject.setTaken(cursor.getInt(6) == 1 ? true : false);
-
-                returnList.add(rentObject);
-            }while(cursor.moveToNext());
-            }
+        fillList(cursor);
 
         //close cursor and db
         cursor.close();
         db.close();
 
-        return returnList;
+        return this.returnList;
     }
 
     public ArrayList<RentObject> getTextSearchEntries(String search){
@@ -129,7 +118,62 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //get results from Database
         Cursor cursor = db.rawQuery(query, null);
 
-        //assign values of each row of results to a RentObject and add to List
+        //fill List with RentObjects
+        fillList(cursor);
+
+        //close cursor and db
+        cursor.close();
+        db.close();
+
+        return this.returnList;
+    }
+
+    public ArrayList<RentObject> getZipcodeSearchEntries(int zipcode){
+        ArrayList<String> emailList = new ArrayList<>();
+        ArrayList<RentObject> returnList = new ArrayList<>();
+        String queryRentObjects;
+
+        //FIRST STEP: Get all emails from USERS_TABLE with matching zipcode
+        SQLiteDatabase db = getReadableDatabase();
+        String queryEmail = "SELECT email FROM "+USERS_TABLE+" WHERE zipcode = "+zipcode;
+
+        //1.1.:get results from database
+        Cursor cursorEmail = db.rawQuery(queryEmail, null);
+
+        //1.2.:assign values of each row of results to a RentObject and add to List
+        if(cursorEmail.moveToFirst()){
+            do {
+                RentObject rentObject = new RentObject();
+                emailList.add(cursorEmail.getString(0));
+            }while(cursorEmail.moveToNext());
+        }
+        cursorEmail.close();
+
+        //Second Step: Get RentObjects with matching email
+        queryRentObjects = "SELECT * FROM "+RENTABLES_TABLE+" WHERE email = '%'";;
+
+        //2.1. Prepare sql statement
+        for(String email : emailList){
+            String addEmail= " OR email = '"+email+"'";
+            queryRentObjects += addEmail;
+        }
+
+        //2.2. get results from database
+        Cursor cursorRentObjects = db.rawQuery(queryRentObjects, null);
+
+        //2.3. fill List with RentObjects
+        fillList(cursorRentObjects);
+        db.close();
+
+        return this.returnList;
+    }
+
+    //assign values of each row of results to a RentObject and add to List
+    private void fillList(Cursor cursor){
+        returnList = null;
+        returnList = new ArrayList<>();
+
+
         if(cursor.moveToFirst()){
             do {
                 RentObject rentObject = new RentObject();
@@ -144,12 +188,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 returnList.add(rentObject);
             }while(cursor.moveToNext());
         }
-
-        //close cursor and db
         cursor.close();
-        db.close();
-
-        return returnList;
     }
+
 
 }

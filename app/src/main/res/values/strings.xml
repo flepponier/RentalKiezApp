@@ -18,4 +18,30 @@
     <string name="button">Button</string>
     <string name="secondary_color">Secondary color</string>
     <string name="email_icon">email icon</string>
+
+
+    <string-array name="disctricts_array">
+        <item></item>
+        <item>Charlottenburg</item>
+        <item>Charlottenburg-Nord</item>
+        <item>Fennpfuhl</item>
+        <item>Friedenau</item>
+        <item>Friedrichsfelde</item>
+        <item>Friedrichshain</item>
+        <item>Grunewald</item>
+        <item>Halensee</item>
+        <item>Hansaviertel</item>
+        <item>Karlshorst</item>
+        <item>Kreuzberg</item>
+        <item>Lichtenberg</item>
+        <item>Mitte</item>
+        <item>Moabit</item>
+        <item>Pankow</item>
+        <item>Prenzlauer Berg</item>
+        <item>Rummelsburg</item>
+        <item>Schöneberg</item>
+        <item>Tiergarten</item>
+        <item>Wilmersdorf</item>
+    </string-array>
+
 </resources>

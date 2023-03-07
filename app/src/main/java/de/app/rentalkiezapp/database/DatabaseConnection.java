@@ -1,4 +1,4 @@
-package de.app.rentalkiezapp;
+package de.app.rentalkiezapp.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
