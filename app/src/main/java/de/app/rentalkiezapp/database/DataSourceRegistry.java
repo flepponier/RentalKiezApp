@@ -32,7 +32,7 @@ public class DataSourceRegistry extends SQLiteOpenHelper {
 
     @SuppressLint("RestrictedApi")
     public DataSourceRegistry(@Nullable Context context) {
-        super(context, "RENTALKIEZ.db", null, 1);
+        super(context, "RENTALKIEZ.db", null, 2);
         this.context=context;
         Log.d(LOG_TAG, "DbHelper created database: " + getDatabaseName());
     }

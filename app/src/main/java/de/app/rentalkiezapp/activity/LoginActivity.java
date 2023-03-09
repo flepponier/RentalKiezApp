@@ -46,6 +46,12 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+        btnregister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+            }
+        });
 
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,21 +59,20 @@ public class LoginActivity extends AppCompatActivity {
                 checkEmail = editTextEmail.getText().toString().trim();
                 checkPass = editTextPassword.getText().toString().trim();
 
-                /*
-                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                intent.putExtra("email", checkEmail);
-                startActivity(intent);
-*/
-
-                if(TextUtils.isEmpty(checkEmail)) {
+                if(TextUtils.isEmpty(checkEmail) && TextUtils.isEmpty(checkPass)){
                     editTextEmail.setError("Email is Required.");
-                    return;
-                }
-                if(TextUtils.isEmpty(checkPass)) {
                     editTextPassword.setError("Password is Required.");
                     return;
                 }
-                if(checkPass.length()<6) {
+                else if(TextUtils.isEmpty(checkEmail)) {
+                    editTextEmail.setError("Email is Required.");
+                    return;
+                }
+                else if(TextUtils.isEmpty(checkPass)) {
+                    editTextPassword.setError("Password is Required.");
+                    return;
+                }
+                else if(checkPass.length()<6) {
                     editTextPassword.setError("Password must be >5");
                     return;
                 }
@@ -96,12 +101,7 @@ public class LoginActivity extends AppCompatActivity {
 
         );
 
-        btnregister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
-            }
-        });
+
     }
 
     @Override

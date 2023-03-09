@@ -15,7 +15,7 @@
         android:src="@drawable/backbutton"
         android:scaleType="fitCenter"
         android:background="@android:color/transparent"
-
+        android:foreground="@drawable/rounded_rect_border"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
@@ -64,11 +64,14 @@
 
     <EditText
         android:id="@+id/editTextUserInput"
-        android:layout_width="241dp"
-        android:layout_height="0dp"
+        android:layout_width="253dp"
+        android:layout_height="41dp"
         android:layout_marginTop="20dp"
+        android:background="#FFFFE0"
         android:ems="10"
         android:gravity="center"
+        android:foreground="@drawable/rounded_rect_border"
+
         android:hint="Hammer  /  10711"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
@@ -81,6 +84,10 @@
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_marginTop="36dp"
+        android:background="#FFFFE0"
+        android:padding="8dp"
+        android:foreground="@drawable/rounded_rect_border"
+
         android:entries="@array/disctricts_array"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"

@@ -2,12 +2,15 @@ package de.app.rentalkiezapp.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 import de.app.rentalkiezapp.R;
 import de.app.rentalkiezapp.database.DataSourceRentables;
@@ -16,10 +19,9 @@ import de.app.rentalkiezapp.entity.RentObject;
 public class RentObjectActivity extends AppCompatActivity {
 
     //declare necessary variables
-    ImageButton btnback, btntaken;
+    ImageButton btnback, btnlogout, btntaken;
     TextView textViewTitle,textViewDescription,textViewEmail, textViewState;
     ImageView imageViewLendObject;
-    DataSourceRentables databaseHelperRentables;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,7 @@ public class RentObjectActivity extends AppCompatActivity {
 
         //connect buttons from rent_object_layout.xml
         btnback=findViewById(R.id.btnback);
+        btnlogout=findViewById(R.id.btnlogout);
         btntaken=findViewById(R.id.btntaken);
         imageViewLendObject=findViewById(R.id.imageViewLendObject);
         textViewTitle=findViewById(R.id.textViewTitle);
@@ -52,6 +55,16 @@ public class RentObjectActivity extends AppCompatActivity {
         btnback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                finish();
+            }
+        });
+        btnlogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut(); //logout
+                Intent goToLogin = new Intent(RentObjectActivity.this, LoginActivity.class); //go to LoginActivity
+                goToLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); //make it impossible to return to previous Activity
+                startActivity(goToLogin);
                 finish();
             }
         });

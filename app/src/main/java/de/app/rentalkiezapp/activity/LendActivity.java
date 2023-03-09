@@ -6,6 +6,7 @@ import java.sql.Connection;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -28,17 +29,10 @@ public class LendActivity extends AppCompatActivity {
     Connection conn;
 
     //contain  database column names
-    private static final String KEY_UID = "users";
-    private static final String KEY_TITLE = "title";
-    private static final String KEY_DESCRIPTION = "description";
-    private static final String KEY_CONDITION = "condition";
-    private static final String KEY_BORROWED = "borrowed";
-
-   private String email;
-
+    DataSourceRentables databaseHelperRentables;
+    private String email;
     private ArrayList<RentObject> listRentObjects;
-
-
+    private ListAdapter listAdapter;
     private ImageButton btnback, btnlogout;
     private ListView listView;
 
@@ -62,11 +56,11 @@ public class LendActivity extends AppCompatActivity {
         btnlogout.setOnClickListener(new MyListener());
 
         //get RentObjects with matching email
-        DataSourceRentables databaseHelperRentables =new DataSourceRentables(LendActivity.this);
+        databaseHelperRentables =new DataSourceRentables(LendActivity.this);
         listRentObjects= databaseHelperRentables.getUserEntries(email);
 
         //show each Object of ArrayList
-        ListAdapter listAdapter = new ListAdapter(LendActivity.this, listRentObjects);
+        listAdapter = new ListAdapter(LendActivity.this, listRentObjects);
         listView.setAdapter(listAdapter);
 
         //make objects of listView clickable and set Listener
@@ -101,10 +95,21 @@ public class LendActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK && requestCode == 1) {
+            RentObject rentObject = data.getParcelableExtra("updatedRentObject");
+            for(int i=0; i<listRentObjects.size();i++){
+                if(rentObject.getId()==listRentObjects.get(i).getId()){
+                    listRentObjects.get(i).setTaken(rentObject.getTaken());
+                    return;
+                }
+            }
+            listAdapter.notifyDataSetChanged();
+        }
     }
+
+
 
 
 }

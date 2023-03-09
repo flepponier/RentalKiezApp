@@ -43,7 +43,6 @@ public class ListAdapter extends ArrayAdapter<RentObject> {
         ImageView imageViewRentObject = convertView.findViewById(R.id.imageViewRentObjec);
         ImageView imageViewAvailable = convertView.findViewById(R.id.imageViewAvailable);
         TextView textViewTitle = convertView.findViewById(R.id.title);
-        TextView textViewState = convertView.findViewById(R.id.state);
 
         //set all Attributes: image, title, availabilty
 

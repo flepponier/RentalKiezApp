@@ -57,7 +57,7 @@ public class RentActivity extends AppCompatActivity {
     }
 
     private void goToRentResultsActivityIfListNotNull(){
-        if (listRentObjects==null) {
+        if (listRentObjects.size()==0) {
             btngo.setError("Invalid Input");
             Toast.makeText(RentActivity.this, "No results. Try something else!", Toast.LENGTH_SHORT).show();
         } else {

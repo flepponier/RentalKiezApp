@@ -79,31 +79,6 @@ public class DataSourceRentables extends SQLiteOpenHelper {
 
     }
 
-    public boolean addAllRentables (){
-        DatabaseDataForTableRentables object = new DatabaseDataForTableRentables();
-        List<RentObject> list = new ArrayList<>();
-        list = object.getRentablesArray();
-        RentObject rentObject = list.get(1);
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
-
-            cv.put(COLUMN_IMAGE, rentObject.getImageReference());
-            cv.put(COLUMN_TITLE, rentObject.getTitle());
-            cv.put(COLUMN_DESCRIPTION, rentObject.getDescription());
-            cv.put(COLUMN_EMAIL, rentObject.getEmail());
-            cv.put(COLUMN_TAKEN, rentObject.getTaken());
-
-            long insert = db.insert(RENTABLES_TABLE, null, cv);
-            db.close();
-            if(insert==-1){
-                return false;
-            }
-            else{
-                return true;
-            }
-    }
-
 
     public ArrayList<RentObject> getUserEntries(String emailUser){
         ArrayList<RentObject> returnList;

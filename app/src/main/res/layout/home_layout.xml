@@ -10,24 +10,28 @@
 
     <ImageButton
         android:id="@+id/btnlogout"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="64dp"
+        android:layout_height="55dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         android:src="@drawable/logoutbutton"
         android:scaleType="fitCenter"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:background="@android:color/transparent" />
 
     <TextView
-        android:id="@+id/tvhome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_marginTop="130dp"
-        android:text="@string/home"
+        android:id="@+id/textViewSearch"
+        android:layout_width="432dp"
+        android:layout_height="81dp"
+        android:layout_marginTop="96dp"
+        android:gravity="center"
+        android:text="Homebase"
+        android:background="#D3D3D3"
+        android:textAlignment="center"
         android:textSize="40sp"
+        android:textStyle="bold"
+        android:layout_gravity="top"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -35,25 +39,26 @@
 
     <Button
         android:id="@+id/btnrent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_width="182dp"
+        android:layout_height="107dp"
+        android:layout_marginTop="68dp"
+        android:background="#FFFFE0"
         android:text="@string/rent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvhome" />
-
+        app:layout_constraintTop_toBottomOf="@+id/textViewSearch" />
 
     <Button
         android:id="@+id/btnlend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_width="182dp"
+        android:layout_height="107dp"
+        android:layout_marginTop="56dp"
+        android:background="#E6E6FA"
         android:text="@string/lend"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnrent"
-        />
+        app:layout_constraintTop_toBottomOf="@id/btnrent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

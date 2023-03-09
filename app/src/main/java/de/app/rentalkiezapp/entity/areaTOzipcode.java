@@ -21,8 +21,8 @@ public class areaTOzipcode {
                 String [] args1 = {"10585", "14059"};
                 return args1;
             case FENNPFUHL:
-                //usw. und sofort
-                break;
+                String [] args2 = {"10367", "10370"};
+                return args2;
             default:
         }
 

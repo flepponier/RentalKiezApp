@@ -46,8 +46,6 @@ public class HomeActivity extends AppCompatActivity {
                 finish();
             }
             else if(view.getId()==R.id.btnrent){
-                DataSourceRentables dataSourceRentables = new DataSourceRentables(HomeActivity.this);
-                boolean success= dataSourceRentables.addAllRentables();
                 startActivity(new Intent(HomeActivity.this, RentActivity.class));
             }
             else if(view.getId()==R.id.btnlend){
