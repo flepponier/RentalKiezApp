@@ -1,7 +1,5 @@
 package de.app.rentalkiezapp.activity;
 
-import java.sql.Connection;
-
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,14 +18,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.ArrayList;
 
 import de.app.rentalkiezapp.adapter.ListAdapter;
-import de.app.rentalkiezapp.entity.RentObject;
 import de.app.rentalkiezapp.R;
 
 public class RentResultsActivity extends AppCompatActivity {
 
     private ArrayList<de.app.rentalkiezapp.entity.RentObject> rentObjects;
 
-    private ImageButton back, logout;
+    private ImageButton btnback, btnlogout;
     private ListView listView;
 
     @Override
@@ -36,13 +33,11 @@ public class RentResultsActivity extends AppCompatActivity {
         setContentView(R.layout.rent_results_activity);
 
         rentObjects = new ArrayList<>();
-        back = (ImageButton) findViewById(R.id.btnback);
-        logout = (ImageButton) findViewById(R.id.btnlogout);
+
+        btnback = (ImageButton) findViewById(R.id.btnback);
+        btnlogout = (ImageButton) findViewById(R.id.btnlogout);
         listView = findViewById(R.id.listView);
 
-        //set Listener for buttons
-        back.setOnClickListener(new MyListener());
-        logout.setOnClickListener(new MyListener());
 
         //save passed ArrayList from RentActivity
         rentObjects = getIntent().getParcelableArrayListExtra("listRentObjects");
@@ -61,27 +56,21 @@ public class RentResultsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-    }
-
-    //Listener for buttons
-    public class MyListener implements View.OnClickListener {
-        @Override
-        public void onClick(View view) {
-            if (view.getId() == R.id.btnlogout) {//start Logout-process
+        btnback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        btnlogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut(); //logout
                 Intent goToLogin = new Intent(RentResultsActivity.this, LoginActivity.class); //go to LoginActivity
                 goToLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); //make it impossible to return to previous Activity
                 startActivity(goToLogin);
                 finish();
-            } else if (view.getId() == R.id.btnrent) {//go to previous page
-                finish();
             }
-        }
+        });
     }
-
-
-
-
 }

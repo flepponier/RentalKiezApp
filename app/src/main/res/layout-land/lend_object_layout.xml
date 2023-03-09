@@ -7,7 +7,7 @@
     tools:context=".activity.LendObjectActivity">
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/imageViewObject"
+        android:id="@+id/imageViewLendObject"
         android:layout_width="206dp"
         android:layout_height="147dp"
         android:layout_marginTop="36dp"
@@ -33,7 +33,7 @@
         app:layout_constraintEnd_toEndOf="parent"
 
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewObject" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewLendObject" />
 
     <TextView
         android:id="@+id/textViewDescription"

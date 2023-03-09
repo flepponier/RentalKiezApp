@@ -53,9 +53,11 @@ public class LoginActivity extends AppCompatActivity {
                 checkEmail = editTextEmail.getText().toString().trim();
                 checkPass = editTextPassword.getText().toString().trim();
 
+                /*
                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                 intent.putExtra("email", checkEmail);
                 startActivity(intent);
+*/
 
                 if(TextUtils.isEmpty(checkEmail)) {
                     editTextEmail.setError("Email is Required.");
@@ -88,8 +90,11 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 });
+
             }
-        });
+        }
+
+        );
 
         btnregister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,5 +102,10 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
         });
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
     }
 }

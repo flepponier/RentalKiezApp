@@ -21,9 +21,9 @@
 
 
     <string-array name="disctricts_array">
-        <item></item>
+        <item>...</item>
+        <item>Berlin</item>
         <item>Charlottenburg</item>
-        <item>Charlottenburg-Nord</item>
         <item>Fennpfuhl</item>
         <item>Friedenau</item>
         <item>Friedrichsfelde</item>

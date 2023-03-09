@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.ArrayList;
 
 import de.app.rentalkiezapp.adapter.ListAdapter;
-import de.app.rentalkiezapp.database.DatabaseHelperRentables;
+import de.app.rentalkiezapp.database.DataSourceRentables;
 import de.app.rentalkiezapp.entity.RentObject;
 import de.app.rentalkiezapp.R;
 
@@ -50,7 +50,7 @@ public class LendActivity extends AppCompatActivity {
         setContentView(R.layout.lend_layout);
 
         listRentObjects = new ArrayList<>();
-        email = getIntent().getParcelableExtra("email");
+        email = getIntent().getStringExtra("email");
 
 
         btnback = (ImageButton) findViewById(R.id.btnback);
@@ -62,7 +62,7 @@ public class LendActivity extends AppCompatActivity {
         btnlogout.setOnClickListener(new MyListener());
 
         //get RentObjects with matching email
-        DatabaseHelperRentables databaseHelperRentables =new DatabaseHelperRentables(LendActivity.this);
+        DataSourceRentables databaseHelperRentables =new DataSourceRentables(LendActivity.this);
         listRentObjects= databaseHelperRentables.getUserEntries(email);
 
         //show each Object of ArrayList
@@ -75,6 +75,7 @@ public class LendActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(LendActivity.this, LendObjectActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.putExtra("RentObject", listRentObjects.get(position));
                 startActivity(intent);
             }
@@ -99,6 +100,11 @@ public class LendActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+
+    }
 
 
 }

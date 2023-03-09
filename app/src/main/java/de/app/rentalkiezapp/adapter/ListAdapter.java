@@ -19,11 +19,12 @@ import de.app.rentalkiezapp.R;
 import de.app.rentalkiezapp.entity.RentObject;
 
 public class ListAdapter extends ArrayAdapter<RentObject> {
-
+    Context context;
 
     public ListAdapter(Context context, ArrayList<RentObject> rentObjects){
 
         super(context, R.layout.list_item,rentObjects);
+        this.context=context;
 
     }
 
@@ -44,9 +45,16 @@ public class ListAdapter extends ArrayAdapter<RentObject> {
         TextView textViewTitle = convertView.findViewById(R.id.title);
         TextView textViewState = convertView.findViewById(R.id.state);
 
-        imageViewRentObject.setImageResource(R.drawable.bohrmaschine);
+        //set all Attributes: image, title, availabilty
+
+            //get name of image saved in database
+            //-----an alternative would be: get url or blob from db and set pictures accordingly-----
+        String imageName= rentObject.getImageReference();
+        int resourceId = context.getResources().getIdentifier(imageName, "drawable", context.getPackageName());
+        // Set the image resource of the ImageView
+        imageViewRentObject.setImageResource(resourceId);
+
         textViewTitle.setText(rentObject.getTitle());
-        textViewState.setText(rentObject.getState());
         if(rentObject.getTaken()==true){
             imageViewAvailable.setImageResource(R.drawable.notavailable);
         }

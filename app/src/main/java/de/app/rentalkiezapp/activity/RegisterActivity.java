@@ -1,7 +1,5 @@
 package de.app.rentalkiezapp.activity;
 
-import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,18 +15,16 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import de.app.rentalkiezapp.R;
-import de.app.rentalkiezapp.database.DatabaseHelperRegistry;
+import de.app.rentalkiezapp.database.DataSourceRegistry;
 import de.app.rentalkiezapp.entity.User;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -41,7 +36,7 @@ public class RegisterActivity extends AppCompatActivity {
     private Button btnregister;
     private  ProgressBar progressBar;
 
-    DatabaseHelperRegistry databaseHelperRegistry;
+    DataSourceRegistry dataSourceRegistry;
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore mFirestore;
@@ -92,6 +87,12 @@ public class RegisterActivity extends AppCompatActivity {
                     editTextEmail.setError("Email is required.");
                     return;
                 }
+                else if(!TextUtils.isEmpty(email)) {
+                    if(isEmailValid(email)==false) {
+                        editTextEmail.setError("Invalid email.");
+                        return;
+                    }
+                }
                 else if(TextUtils.isEmpty(password)) {
                     editTextPassword.setError("Password is required.");
                     return;
@@ -126,57 +127,34 @@ public class RegisterActivity extends AppCompatActivity {
                 int zipcodeInt=Integer.parseInt(zipcode);
                 progressBar.setVisibility(View.VISIBLE);
 
-                User user = new User(email, "firstname", "lastname", street, zipcodeInt, town);
+                User user = new User(email, firstname, lastname, street, zipcodeInt, town);
 
-                databaseHelperRegistry=new DatabaseHelperRegistry(RegisterActivity.this);
-                boolean success=databaseHelperRegistry.addUser(user);
-
-                if(success){
-                    Toast.makeText(RegisterActivity.this, "User registered.", Toast.LENGTH_SHORT).show();
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            // Insert any necessary code here
-                            finish(); // This will switch to the previous activity after a short delay
-                        }
-                    }, 1000); // Delay for 1000 milliseconds (1 second)
-                }else{
-                    Toast.makeText(RegisterActivity.this, "User could not be registered.", Toast.LENGTH_SHORT).show();
-
-                }
-
-                /*
                 mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            Toast.makeText(RegisterActivity.this, "User Created.", Toast.LENGTH_LONG).show();
-                            userID = mAuth.getCurrentUser().getUid(); //save userID of new User
-                            DocumentReference documentReference = mFirestore.collection("users").document(userID); //create Collection "users" with userID
-                            Map<String,Object> user = new HashMap<>();//create Data with Hashmap
-                            user.put("email", email);
-                            user.put("fName", fullName);
-                            user.put("street", street);
-                            user.put("zipcode", zipcode);
-                            user.put("town", town);
 
-                            //add user to Firebase and log success
-                            documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void unused) {
-                                    Log.d(TAG, "onSuccess: user Profile is created for"+userID);
-                                }
-                            });
 
-                            progressBar.setVisibility(View.GONE);
-                            finish();
+                                Toast.makeText(RegisterActivity.this, "User created.", Toast.LENGTH_SHORT).show();
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        dataSourceRegistry =new DataSourceRegistry(RegisterActivity.this);
+                                        boolean success= dataSourceRegistry.addUser(user);
+                                        progressBar.setVisibility(View.GONE);
+                                        finish(); // This will switch to the previous activity after a short delay
+                                    }
+                                }, 1000); // Delay for 1000 milliseconds (1 second)
+
+
+
                         }
                         else{
-                            Toast.makeText(RegisterActivity.this, "Error!" + task.getException().getMessage(),Toast.LENGTH_LONG).show();
+                            Toast.makeText(RegisterActivity.this, "User could not be registered properly.", Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.GONE);
                         }
                     }
-                });*/
+                });
             }
         });
 
@@ -186,5 +164,11 @@ public class RegisterActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+    private static boolean isEmailValid(String email) {
+        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,}$";
+        Pattern pattern = Pattern.compile(emailRegex);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
 }

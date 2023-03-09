@@ -16,14 +16,14 @@
         android:theme="@style/Theme.RentalKiezApp"
         tools:targetApi="31">
         <activity
-            android:name=".RentObjectActivity"
+            android:name=".activity.RentObjectActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".RentResultsActivity"
+            android:name=".activity.RentResultsActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

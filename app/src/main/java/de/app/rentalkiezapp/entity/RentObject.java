@@ -5,17 +5,16 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
-public class RentObject implements Parcelable {
+public class RentObject  implements Parcelable{
     int id;
-    String  title, description, state, email;
+    String  title, description, email;
     String imageReference;
     Boolean taken;
 
-    public RentObject(int id, String title, String description, String state, String email, String imageReference, Boolean taken) {
+    public RentObject(int id, String title, String description,  String email, String imageReference, Boolean taken) {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.state = state;
         this.email = email;
         this.imageReference = imageReference;
         this.taken = taken;
@@ -26,12 +25,12 @@ public class RentObject implements Parcelable {
         id = in.readInt();
         title = in.readString();
         description = in.readString();
-        state = in.readString();
         email = in.readString();
         imageReference = in.readString();
         byte tmpTaken = in.readByte();
         taken = tmpTaken == 0 ? null : tmpTaken == 1;
     }
+
 
     public static final Creator<RentObject> CREATOR = new Creator<RentObject>() {
         @Override
@@ -69,14 +68,6 @@ public class RentObject implements Parcelable {
         this.description = description;
     }
 
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -107,7 +98,6 @@ public class RentObject implements Parcelable {
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", state='" + state + '\'' +
                 ", email='" + email + '\'' +
                 ", taken=" + taken +
                 '}';
@@ -123,7 +113,6 @@ public class RentObject implements Parcelable {
         dest.writeInt(id);
         dest.writeString(title);
         dest.writeString(description);
-        dest.writeString(state);
         dest.writeString(email);
         dest.writeString(imageReference);
         dest.writeByte((byte) (taken == null ? 0 : taken ? 1 : 2));

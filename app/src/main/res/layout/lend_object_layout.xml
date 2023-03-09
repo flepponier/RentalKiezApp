@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/imageViewObject"
+        android:id="@+id/imageViewLendObject"
         android:layout_width="206dp"
         android:layout_height="147dp"
         android:layout_marginTop="36dp"
@@ -35,24 +35,24 @@
         android:id="@+id/textViewTitle"
         android:layout_width="431dp"
         android:layout_height="63dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="28dp"
         android:background="#D3D3D3"
+        android:padding="8dp"
         android:text="Hammer"
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textSize="30dp"
         android:textStyle="bold"
-        android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
 
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewObject" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewLendObject" />
 
     <TextView
         android:id="@+id/textViewDescription"
-        android:layout_width="416dp"
-        android:layout_height="79dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="359dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="32dp"
         android:background="#FFFFE0"
         android:maxLines="5"
         android:padding="20dp"
@@ -63,8 +63,8 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="216dp"
-        android:layout_height="206dp"
+        android:layout_width="221dp"
+        android:layout_height="188dp"
         android:background="#D3D3D3"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -72,70 +72,48 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewDescription"
-        app:layout_constraintVertical_bias="0.205">
+        app:layout_constraintVertical_bias="0.3">
 
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="36dp"
-            android:layout_height="33dp"
-            android:layout_marginTop="92dp"
-            app:layout_constraintEnd_toStartOf="@+id/textViewState"
-            app:layout_constraintHorizontal_bias="0.342"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/condition" />
 
         <TextView
             android:id="@+id/textViewEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
 
 
+            android:layout_marginTop="24dp"
             android:text="Random.Email@web.de"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.731"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewState" />
-
-        <TextView
-            android:id="@+id/textViewState"
-            android:layout_width="74dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="28dp"
-            android:text="Sehr gut "
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewAvailable" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/checkBox" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/imageView2"
+            android:layout_width="24dp"
+            android:layout_height="22dp"
+
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="24dp"
-
             android:contentDescription="@string/email_icon"
-            app:layout_constraintEnd_toStartOf="@+id/textViewEmail"
-            app:layout_constraintHorizontal_bias="0.684"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.081"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/checkBox"
             app:srcCompat="@android:drawable/ic_dialog_email" />
 
-        <ImageView
-            android:id="@+id/imageViewAvailable"
-            android:layout_width="53dp"
-            android:layout_height="48dp"
-
-
-            android:layout_marginTop="16dp"
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
+            android:text="Eintrag deaktiviert"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintHorizontal_bias="0.183"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/available" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,17 +7,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
 import de.app.rentalkiezapp.R;
-import de.app.rentalkiezapp.database.DatabaseHelperRentables;
+import de.app.rentalkiezapp.database.DataSourceRentables;
 
 public class HomeActivity extends AppCompatActivity {
     Button lend, rent;
     ImageButton logout;
-    DatabaseHelperRentables databaseHelperRentables;
+    DataSourceRentables databaseHelperRentables;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,13 +46,8 @@ public class HomeActivity extends AppCompatActivity {
                 finish();
             }
             else if(view.getId()==R.id.btnrent){
-                DatabaseHelperRentables databaseHelperRentables = new DatabaseHelperRentables(HomeActivity.this);
-                boolean success= databaseHelperRentables.addAllRentables();
-
-                    Toast.makeText(HomeActivity.this, "Success= "+ success, Toast.LENGTH_SHORT).show();
-
-                //hier einbauen, dass Userdaten weitergereicht werden
-                //gotoRent.putExtra("calculatedMwtS", calculatedMwtS);
+                DataSourceRentables dataSourceRentables = new DataSourceRentables(HomeActivity.this);
+                boolean success= dataSourceRentables.addAllRentables();
                 startActivity(new Intent(HomeActivity.this, RentActivity.class));
             }
             else if(view.getId()==R.id.btnlend){
