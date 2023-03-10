@@ -4,6 +4,8 @@ Bedienungshilfe
 
 1. RENTALKIEZ.db in Verzeichnis von Emulator/Android Handy speichern /data/data/de.app.rentalkiezapp/databases/RENTALKIEZ.db
     DB via SQLite Browser erstellt, da programmatische Erstellung im Kontext meiner App keinen Sinn macht
+    1. WICHTIG: man muss ggf. die Datenbankversion in den Klassen "DataSourceRegistry" und "DataSourceRentables" inkrementieren, wenn die Fehlermeldung "E/SQLiteLog: (1) no such table: RENTABLES_TABLE" auftritt
+    2. Das funktioniert leider nicht immer, aus mir nicht erklärlichen Gründen...sqlite db...es muss auf jeden Fall funktionieren
 2. Zugangsdaten für Benutzer, welche Korrespondierende RentObjects in DB haben
     1. USER: florian.eppe@web.de PW: 123456
     2. USER: Max.Mustermann@web.de PW: 123456
