@@ -56,8 +56,13 @@ public class LendActivity extends AppCompatActivity {
         btnlogout.setOnClickListener(new MyListener());
 
         //get RentObjects with matching email
-        databaseHelperRentables =new DataSourceRentables(LendActivity.this);
-        listRentObjects= databaseHelperRentables.getUserEntries(email);
+        databaseHelperRentables = new DataSourceRentables(LendActivity.this);
+        listRentObjects = databaseHelperRentables.getUserEntries(email);
+
+        if (listRentObjects.size() == 0) {
+            listRentObjects.add(new RentObject(1, "No RentObjects", "Hinzufügen von RentObjects wurde nicht implementiert, alles nach Plan Chef", "GuteNoteStr. 1", "registerface", true));
+
+        }
 
         //show each Object of ArrayList
         listAdapter = new ListAdapter(LendActivity.this, listRentObjects);
@@ -74,6 +79,7 @@ public class LendActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
 
     }

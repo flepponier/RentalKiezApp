@@ -23,8 +23,6 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_layout);
 
-        //create database here
-
         logout = (ImageButton) findViewById(R.id.btnlogout);
         rent = (Button) findViewById(R.id.btnrent);
         lend = (Button) findViewById(R.id.btnlend);
